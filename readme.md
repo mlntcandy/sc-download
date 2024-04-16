@@ -10,4 +10,4 @@ Listens in on the network requests made by the SoundCloud web app and saves the 
 
 To add tracks to the list, hover over them anywhere in the app or play them. The script will intercept the network requests and add the track to the list.
 
-To download a track, click on the download button next to it. The script will download it as an MP3 file. Or you can download all tracks at once by clicking the "💾" in the top.
+To download a track, click on the download button next to it. The script will download it as an MP3 file. Or you can download all tracks at once by clicking the "⏬" in the top.
