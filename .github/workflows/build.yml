@@ -1,0 +1,32 @@
+name: Build and push
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and push userscript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout repository
+
+      - uses: oven-sh/setup-bun@v1
+        name: Setup bun
+        with:
+          bun-version: latest
+
+      - run: bun i
+        name: Install dependencies
+
+      - run: bun run build
+        name: Build
+
+        # Push dist/ folder to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        name: Commit and push the built userscript
+        with:
+          commit_message: "Build userscript"
+          branch: main
+          file_pattern: "dist/*"
