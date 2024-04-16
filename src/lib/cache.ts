@@ -108,7 +108,7 @@ export const apiDetails = {
 export const trackDataCache = new Cache<
   number,
   {
-    artwork_url: string;
+    artwork_url?: string;
     duration: number;
     title: string;
     genre: string;

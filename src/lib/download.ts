@@ -2,6 +2,7 @@ import { TrackMeta, mp3Cache, playlistCache, trackDataCache } from "./cache";
 import { ID3Writer } from "browser-id3-writer";
 
 async function getCoverArt(track: TrackMeta, x500 = true) {
+  if (!track.artwork_url) return null;
   try {
     const response = await fetch(
       x500

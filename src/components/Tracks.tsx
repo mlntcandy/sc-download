@@ -43,7 +43,10 @@ export function Track({ id }: { id: number }) {
         loaded === 0 ? "stuck" : ""
       }`}
     >
-      <img src={track.artwork_url} alt="Album Art" class="art" />
+      {track.artwork_url && (
+        <img src={track.artwork_url} alt="Album Art" class="art" />
+      )}
+      {!track.artwork_url && <div class="art noimg">🎵</div>}
       <div className="parts">
         {!parts && "🕒"}
         {parts && loaded < 1 && Math.floor(loaded * 100) + "%"}
