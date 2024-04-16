@@ -116,6 +116,7 @@ export const trackDataCache = new Cache<
     permalink_url: string;
     user: {
       username: string;
+      originalPublisher?: string;
     };
   }
 >((id) => {
@@ -130,7 +131,12 @@ export const trackDataCache = new Cache<
         const differentArtist = regex.test(data.title);
         const title = differentArtist ? data.title.split(regex)[1] : data.title;
         const user = differentArtist
-          ? { ...data.user, username: data.title.split(regex)[0] }
+          ? {
+              ...data.user,
+              username: data.title.split(regex)[0],
+              // preserve original publisher for metadata
+              originalPublisher: data.user.username,
+            }
           : data.user;
         return {
           ...data,

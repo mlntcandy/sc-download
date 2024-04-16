@@ -26,7 +26,8 @@ async function attachTrackData(mp3: Blob, track: TrackMeta) {
     .setFrame("TIT2", track.title)
     .setFrame("TYER", new Date(track.display_date).getFullYear())
     .setFrame("TCON", [track.genre])
-    .setFrame("WPAY", track.permalink_url);
+    .setFrame("WPAY", track.permalink_url)
+    .setFrame("TPUB", track.user.originalPublisher ?? track.user.username);
 
   const coverArt = await getCoverArt(track);
   if (coverArt) {
