@@ -1,0 +1,140 @@
+#sc-download {
+  position: fixed;
+  top: 6px;
+  right: 6px;
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  & .app {
+    transition: width 0.2s ease, height 0.2s ease;
+    cursor: pointer;
+    color: white;
+    padding: 4px;
+    background-color: #000000d0;
+    backdrop-filter: blur(10px);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    position: relative;
+    border: none;
+    &::before {
+      content: "⏬";
+      position: absolute;
+      font-size: 16px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &.open {
+      width: 400px;
+      height: 500px;
+      cursor: default;
+      &::before {
+        content: "";
+      }
+    }
+    & .title {
+      font-size: 16px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      & .close {
+        padding: 0;
+        background: none;
+        border: none;
+        color: white;
+      }
+    }
+    & .content {
+      overflow-y: auto;
+      width: 100%;
+      height: calc(100% - 22px);
+    }
+  }
+
+  & .tracks {
+    border-top: 1px solid #ffffff30;
+    box-sizing: border-box;
+
+    & .no-tracks {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & .track {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      /* justify-content: space-between; */
+      padding: 6px 0;
+      border-bottom: 1px solid #ffffff30;
+      background-color: #ffffff00;
+      transition: background-color 0.2s ease;
+      &.full {
+        background-color: #51ff0010;
+      }
+      &.none {
+        background-color: #ff000010;
+      }
+      &.stuck {
+        background-color: #ff990010;
+      }
+
+      & .info {
+        flex-grow: 1;
+      }
+      & .buttons {
+        display: flex;
+        /* gap: 6px; */
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        & button {
+          /* padding: 4px; */
+          border: none;
+          background-color: transparent;
+          color: white;
+          cursor: pointer;
+          transition: color 0.2s ease;
+          &:hover {
+            color: #d6c0c0;
+          }
+        }
+      }
+      & .art {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      & .user {
+        padding: 0;
+        margin: 0;
+      }
+      &:hover {
+        background-color: #ffffff10;
+        & .buttons {
+          opacity: 1;
+        }
+      }
+
+      & .parts {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 10px;
+      }
+    }
+  }
+}
