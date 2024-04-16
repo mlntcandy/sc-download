@@ -9,8 +9,12 @@ export default defineConfig({
     monkey({
       entry: "src/main.tsx",
       userscript: {
-        icon: "https://vitejs.dev/logo.svg",
-        namespace: "npm/vite-plugin-monkey",
+        name: "sc-download",
+        namespace: "mlntcandy",
+        author: "mlntcandy",
+        updateURL:
+          "https:://github.com/mlntcandy/sc-download/raw/main/dist/sc-download.user.js",
+        website: "https:://github.com/mlntcandy/sc-download",
         match: ["https://soundcloud.com/*"],
         "run-at": "document-start",
       },
