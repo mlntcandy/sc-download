@@ -49,3 +49,16 @@ export const useCacheKeys = <K, V>(cache: Cache<K, V>) => {
 };
 
 export const useTracks = () => useCacheKeys(trackDataCache);
+
+export const useSavedState = <T>(key: string, defaultValue: T) => {
+  const [state, setState] = useState<T>(
+    JSON.parse(localStorage.getItem(`sc-download:${key}`) || "null") ||
+      defaultValue
+  );
+
+  useEffect(() => {
+    localStorage.setItem(`sc-download:${key}`, JSON.stringify(state));
+  }, [state]);
+
+  return [state, setState] as const;
+};

@@ -54,13 +54,15 @@ export function Track({ id }: { id: number }) {
         <p class="user">{track.user.username}</p>
       </div>
       <div className="buttons">
-        <button
-          className="cache"
-          onClick={() => download(id, true)}
-          title="Save track to memory"
-        >
-          💾
-        </button>
+        {loaded < 1 && (
+          <button
+            className="cache"
+            onClick={() => download(id, true)}
+            title="Save track to memory"
+          >
+            💾
+          </button>
+        )}
         <button
           className="download"
           onClick={() => download(id)}
@@ -73,8 +75,24 @@ export function Track({ id }: { id: number }) {
   );
 }
 
-export function Tracks() {
-  const tracks = useTracks();
+export function Tracks({
+  autocache,
+  tracks,
+}: {
+  autocache: boolean;
+  tracks: number[];
+}) {
+  useEffect(() => {
+    if (autocache) {
+      tracks.forEach((id) => {
+        trackDataCache.get(id);
+        if (playlistCache.has(id)) {
+          download(id, true);
+        }
+      });
+    }
+  }, [autocache, tracks]);
+
   return (
     <div className="tracks">
       {tracks.length === 0 && (
